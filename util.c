@@ -1,12 +1,11 @@
 #include "util.h"
-#include <argp.h>
 #include <string.h>
 #include <malloc.h>
+#include <ctype.h>
 
 void get_hex_chars(uint8_t byte, char *hex) {
     unsigned char firstNibble;  // a Nibble is 4 bits, half a byte, one hexadecimal character
     unsigned char secondNibble;
-
 
     firstNibble = (byte >> 4);  // isolate first 4 bits
 

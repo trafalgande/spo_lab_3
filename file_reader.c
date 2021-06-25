@@ -29,10 +29,15 @@ void destroy_file_triplet(file_triplet_t *triplet) {
 void calc_hash(FILE *inFile, uint8_t *hash) {
     MD5_CTX mdContext;
     unsigned char data[1024];
+    memset(&mdContext, 0, sizeof(MD5_CTX));
+    memset(data, 0, 1024);
+
     MD5_Init (&mdContext);
     size_t bytes;
-    while ((bytes = fread (data, 1, 1024, inFile)) != 0)
+
+    while ((bytes = fread (data, 1, 1024, inFile)) > 0)
         MD5_Update(&mdContext, data, bytes);
+
     MD5_Final(hash ,&mdContext);
 }
 

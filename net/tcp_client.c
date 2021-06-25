@@ -70,7 +70,7 @@ void *start_tcp_client(void *thread_data) {
 
     log_action(cd->ctx->events_module, "Started downloading file %s", cd->triplet.filename);
     perform_download(sockfd, cd->triplet, cd->ctx);
-    log_action(cd->ctx->events_module, "Finished downloading file %s", cd->triplet.filename);;
+    log_action(cd->ctx->events_module, "Finished downloading file %s", cd->triplet.filename);
 
     close(sockfd);
     free(cd);

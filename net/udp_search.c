@@ -55,12 +55,16 @@ void *search_udp_servers(void *thread_data) {
     size_t c = sendto(sockfd, triplet_str, strlen(triplet_str),
                       0, (const struct sockaddr *) &servaddr,
                       sizeof(servaddr));
+
+
     if (c < 0) {
         log_error(udp_cd->ctx->events_module, "[ERROR, UDP-search] (%d)");
         return NULL;
     }
 
     int8_t received_smth = 0;
+    int counter = 0;
+
 
     while (1) {
         memset(buffer, 0, BUF_SIZE);
@@ -92,9 +96,9 @@ void *search_udp_servers(void *thread_data) {
         }
     }
 
+
     close(sockfd);
     free(triplet_str);
     free(udp_cd);
-
     return NULL;
 }
